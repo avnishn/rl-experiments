@@ -2,6 +2,8 @@
 apex-training-itr:
     sync_config:
         upload_dir: s3://avnish-apex-tests
+    stop:
+        timesteps_total: 12000000
     env:
         grid_search:
             - BreakoutNoFrameskip-v4
@@ -14,38 +16,38 @@ apex-training-itr:
         dueling: false
         num_atoms: 1
         noisy: false
-        n_step: 3
-        lr: .0001
+        prioritized_replay: false
+        n_step: 1
+        target_network_update_freq: 8000
+        lr: .0000625
         adam_epsilon: .00015
-        hiddens: [512]
+        hiddens: [ 512 ]
+        learning_starts: 20000
         buffer_size: 1000000
-        schedule_max_timesteps: 2000000
-        exploration_final_eps: 0.01
-        exploration_fraction: .1
-        prioritized_replay_alpha: 0.5
-        beta_annealing_fraction: 1.0
-        final_prioritized_replay_beta: 1.0
-        num_gpus: 1
-
-        # APEX
-        num_workers: 6
-        num_envs_per_worker: 8
-        sample_batch_size: 20
+        rollout_fragment_length: 4
         train_batch_size: 512
-        target_network_update_freq: 50000
+            num_workers: 6
+            num_envs_per_worker: 8
+        exploration_config:
+            epsilon_timesteps: 2000000
+            final_epsilon: 0.01
+        prioritized_replay_alpha: 0.5
+        num_gpus: 0.5
         timesteps_per_iteration: 25000
-        training_intensity: 6
         seed:
             grid_search:
                 - 0
                 - 512
                 - 144
+        _disable_execution_plan_api: True
+        training_intensity: 6
 
 
-# Runs on a single g3.16xl AWS machine
 apex-execution-fn:
     sync_config:
         upload_dir: s3://avnish-apex-tests
+    stop:
+        timesteps_total: 12000000
     env:
         grid_search:
             - BreakoutNoFrameskip-v4
@@ -58,25 +60,23 @@ apex-execution-fn:
         dueling: false
         num_atoms: 1
         noisy: false
-        n_step: 3
-        lr: .0001
+        prioritized_replay: false
+        n_step: 1
+        target_network_update_freq: 8000
+        lr: .0000625
         adam_epsilon: .00015
-        hiddens: [512]
+        hiddens: [ 512 ]
+        learning_starts: 20000
         buffer_size: 1000000
-        schedule_max_timesteps: 2000000
-        exploration_final_eps: 0.01
-        exploration_fraction: .1
-        prioritized_replay_alpha: 0.5
-        beta_annealing_fraction: 1.0
-        final_prioritized_replay_beta: 1.0
-        num_gpus: 1
-
-        # APEX
-        num_workers: 8
-        num_envs_per_worker: 8
-        sample_batch_size: 20
+        rollout_fragment_length: 4
         train_batch_size: 512
-        target_network_update_freq: 50000
+            num_workers: 6
+            num_envs_per_worker: 8
+        exploration_config:
+            epsilon_timesteps: 2000000
+            final_epsilon: 0.01
+        prioritized_replay_alpha: 0.5
+        num_gpus: 0.5
         timesteps_per_iteration: 25000
         seed:
             grid_search:
