@@ -26,8 +26,8 @@ apex-training-itr:
         buffer_size: 1000000
         rollout_fragment_length: 4
         train_batch_size: 512
-            num_workers: 6
-            num_envs_per_worker: 8
+        num_workers: 6
+        num_envs_per_worker: 8
         exploration_config:
             epsilon_timesteps: 2000000
             final_epsilon: 0.01
@@ -41,7 +41,6 @@ apex-training-itr:
                 - 144
         _disable_execution_plan_api: True
         training_intensity: 6
-
 
 apex-execution-fn:
     sync_config:
@@ -70,8 +69,8 @@ apex-execution-fn:
         buffer_size: 1000000
         rollout_fragment_length: 4
         train_batch_size: 512
-            num_workers: 6
-            num_envs_per_worker: 8
+        num_workers: 6
+        num_envs_per_worker: 8
         exploration_config:
             epsilon_timesteps: 2000000
             final_epsilon: 0.01
