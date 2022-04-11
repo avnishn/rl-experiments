@@ -3,7 +3,7 @@ apex-training-itr:
     sync_config:
         upload_dir: s3://avnish-apex-tests
     stop:
-        timesteps_total: 12000000
+        timesteps_total: 10000000
     env:
         grid_search:
             - BreakoutNoFrameskip-v4
@@ -24,10 +24,12 @@ apex-training-itr:
             epsilon_timesteps: 2000000
             final_epsilon: 0.01
         replay_buffer_config:
-            capacity: 1000000
+            capacity: 750000
             prioritized_replay_alpha: 0.5
+        optimizer:
+            num_replay_buffer_shards: 2
         num_gpus: 1
-        num_workers: 6
+        num_workers: 7
         num_envs_per_worker: 8
         rollout_fragment_length: 20
         train_batch_size: 512
@@ -45,7 +47,7 @@ apex-execution-fn:
     sync_config:
         upload_dir: s3://avnish-apex-tests
     stop:
-        timesteps_total: 12000000
+        timesteps_total: 10000000
     env:
         grid_search:
             - BreakoutNoFrameskip-v4
@@ -66,10 +68,12 @@ apex-execution-fn:
             epsilon_timesteps: 2000000
             final_epsilon: 0.01
         replay_buffer_config:
-            capacity: 1000000
+            capacity: 750000
             prioritized_replay_alpha: 0.5
+        optimizer:
+            num_replay_buffer_shards: 2
         num_gpus: 1
-        num_workers: 6
+        num_workers: 7
         num_envs_per_worker: 8
         rollout_fragment_length: 20
         train_batch_size: 512
