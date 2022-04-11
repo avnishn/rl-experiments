@@ -1,6 +1,5 @@
 apex-training-itr:
-    sync_config:
-        upload_dir: s3://avnish-apex-tests
+
     stop:
         timesteps_total: 12000000
     env: BreakoutNoFrameskip-v4
@@ -21,7 +20,7 @@ apex-training-itr:
             capacity: 1000000
             prioritized_replay_alpha: 0.5
         num_gpus: 1
-        num_workers: 6
+        num_workers: 11
         num_envs_per_worker: 8
         rollout_fragment_length: 20
         train_batch_size: 512
