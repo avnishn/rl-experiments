@@ -22,7 +22,7 @@ apex-training-itr:
         optimizer:
             num_replay_buffer_shards: 2
         num_gpus: 1
-        num_workers: 5
+        num_workers: 7
         num_envs_per_worker: 8
         rollout_fragment_length: 20
         train_batch_size: 512
